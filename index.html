@@ -1,0 +1,736 @@
+<!DOCTYPE html>
+
+<html lang="cs">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Zintegruj.cz - AI integrace, ERP systémy, školení a automatizace. ChatGPT integrace i klasické systémové propojení pro vaši firmu.">
+    <meta name="keywords" content="Zintegruj, AI integrace, ERP integrace, ChatGPT pro firmy, umělá inteligence, AI automatizace, systémová integrace, školení, API integrace, Praha">
+    <title>Zintegruj.cz | AI & ERP Integrace + Školení pro Váš Business</title>
+
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --bg-primary: #000000;
+            --bg-secondary: #111111;
+            --text-primary: #ffffff;
+            --text-secondary: #86868b;
+            --accent: #0071e3;
+            --accent-hover: #0077ed;
+            --success: #30d158;
+            --warning: #ff9500;
+            --card-bg: rgba(255, 255, 255, 0.05);
+            --border: rgba(255, 255, 255, 0.1);
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+            position: relative;
+            overflow-x: hidden;
+            line-height: 1.5;
+        }
+
+        body::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle at center, rgba(0, 113, 227, 0.1) 0%, transparent 70%);
+            animation: rotate 30s linear infinite;
+        }
+
+        @keyframes rotate {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+
+        .cta-container {
+            background: var(--bg-secondary);
+            backdrop-filter: blur(40px) saturate(150%);
+            border: 1px solid var(--border);
+            border-radius: 30px;
+            padding: 64px;
+            max-width: 900px;
+            width: 100%;
+            position: relative;
+            z-index: 1;
+            box-shadow: 0 30px 60px rgba(0, 0, 0, 0.5);
+        }
+
+        .hero-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 8px 20px;
+            background: linear-gradient(135deg, rgba(48, 209, 88, 0.1), rgba(0, 113, 227, 0.1));
+            border: 1px solid rgba(48, 209, 88, 0.3);
+            border-radius: 100px;
+            margin-bottom: 32px;
+            animation: glow 2s ease-in-out infinite;
+        }
+
+        @keyframes glow {
+            0%, 100% { box-shadow: 0 0 20px rgba(48, 209, 88, 0.2); }
+            50% { box-shadow: 0 0 30px rgba(48, 209, 88, 0.4); }
+        }
+
+        .badge-dot {
+            width: 8px;
+            height: 8px;
+            background: var(--success);
+            border-radius: 50%;
+            animation: pulse 2s infinite;
+        }
+
+        .badge-text {
+            font-size: 14px;
+            font-weight: 500;
+            color: var(--success);
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 1; transform: scale(1); }
+            50% { opacity: 0.7; transform: scale(1.2); }
+        }
+
+        h1 {
+            font-size: 72px;
+            font-weight: 800;
+            line-height: 1;
+            letter-spacing: -0.03em;
+            margin-bottom: 32px;
+            background: linear-gradient(180deg, #ffffff 0%, #666666 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .highlight {
+            background: linear-gradient(90deg, #0071e3 0%, #00c7be 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .subtitle {
+            font-size: 24px;
+            line-height: 1.4;
+            color: var(--text-secondary);
+            margin-bottom: 48px;
+            font-weight: 400;
+        }
+
+        .trust-proof {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 40px;
+            padding: 32px;
+            background: var(--card-bg);
+            border-radius: 20px;
+            margin-bottom: 48px;
+            border: 1px solid var(--border);
+        }
+
+        .proof-item {
+            text-align: center;
+        }
+
+        .proof-number {
+            font-size: 48px;
+            font-weight: 700;
+            color: var(--text-primary);
+            display: block;
+            margin-bottom: 4px;
+        }
+
+        .proof-label {
+            font-size: 14px;
+            color: var(--text-secondary);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .ai-features {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 16px;
+            margin-bottom: 48px;
+            padding: 24px;
+            background: linear-gradient(135deg, rgba(0, 113, 227, 0.05), rgba(147, 51, 234, 0.05));
+            border-radius: 24px;
+            border: 1px solid var(--border);
+        }
+
+        .ai-feature {
+            display: flex;
+            align-items: flex-start;
+            gap: 16px;
+            padding: 16px;
+            background: rgba(255, 255, 255, 0.02);
+            border-radius: 16px;
+            transition: all 0.3s ease;
+        }
+
+        .ai-feature:hover {
+            background: rgba(255, 255, 255, 0.05);
+            transform: translateX(4px);
+        }
+
+        .ai-icon {
+            width: 48px;
+            height: 48px;
+            background: linear-gradient(135deg, #0071e3, #9333ea);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+            flex-shrink: 0;
+        }
+
+        .ai-content {
+            flex: 1;
+            min-width: 0;
+        }
+
+        .ai-title {
+            font-size: 18px;
+            font-weight: 600;
+            color: var(--text-primary);
+            margin-bottom: 4px;
+        }
+
+        .ai-desc {
+            font-size: 14px;
+            color: var(--text-secondary);
+            line-height: 1.5;
+            word-wrap: break-word;
+        }
+
+        .benefits-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+            margin-bottom: 48px;
+        }
+
+        .benefit-card {
+            padding: 24px;
+            background: var(--card-bg);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .benefit-card:hover {
+            background: rgba(255, 255, 255, 0.08);
+            border-color: var(--accent);
+            transform: translateY(-4px);
+        }
+
+        .benefit-icon {
+            font-size: 32px;
+            margin-bottom: 12px;
+        }
+
+        .benefit-title {
+            font-size: 16px;
+            font-weight: 600;
+            color: var(--text-primary);
+            margin-bottom: 8px;
+        }
+
+        .benefit-desc {
+            font-size: 14px;
+            color: var(--text-secondary);
+            line-height: 1.5;
+        }
+
+        .cta-section {
+            background: linear-gradient(135deg, rgba(0, 113, 227, 0.1), rgba(0, 113, 227, 0.05));
+            border: 1px solid var(--accent);
+            border-radius: 24px;
+            padding: 40px;
+            margin-bottom: 32px;
+            text-align: center;
+        }
+
+        .cta-title {
+            font-size: 32px;
+            font-weight: 700;
+            margin-bottom: 16px;
+            color: var(--text-primary);
+        }
+
+        .cta-subtitle {
+            font-size: 18px;
+            color: var(--text-secondary);
+            margin-bottom: 32px;
+        }
+
+        .cta-buttons {
+            display: flex;
+            gap: 16px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .cta-button {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            padding: 16px 32px;
+            border-radius: 100px;
+            font-size: 17px;
+            font-weight: 600;
+            text-decoration: none;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            cursor: pointer;
+            border: none;
+            position: relative;
+            min-width: 200px;
+        }
+
+        .primary-button {
+            background: var(--accent);
+            color: white;
+            box-shadow: 0 10px 30px rgba(0, 113, 227, 0.3);
+        }
+
+        .primary-button:hover {
+            background: var(--accent-hover);
+            transform: scale(1.05);
+            box-shadow: 0 15px 40px rgba(0, 113, 227, 0.4);
+        }
+
+        .secondary-button {
+            background: rgba(255, 255, 255, 0.1);
+            color: var(--text-primary);
+            border: 2px solid rgba(255, 255, 255, 0.2);
+            backdrop-filter: blur(10px);
+        }
+
+        .secondary-button:hover {
+            background: rgba(255, 255, 255, 0.15);
+            border-color: rgba(255, 255, 255, 0.3);
+            transform: scale(1.05);
+        }
+
+        .chat-button {
+            background: var(--success);
+            color: white;
+            box-shadow: 0 10px 30px rgba(48, 209, 88, 0.3);
+        }
+
+        .chat-button:hover {
+            transform: scale(1.05);
+            box-shadow: 0 15px 40px rgba(48, 209, 88, 0.4);
+        }
+
+        .icon {
+            width: 20px;
+            height: 20px;
+            fill: currentColor;
+        }
+
+        .guarantee {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+            padding: 20px;
+            background: rgba(48, 209, 88, 0.1);
+            border: 1px solid rgba(48, 209, 88, 0.3);
+            border-radius: 16px;
+            margin-top: 32px;
+            margin-bottom: 16px;
+        }
+
+        .guarantee-icon {
+            color: var(--success);
+            font-size: 24px;
+        }
+
+        .guarantee-text {
+            color: var(--text-primary);
+            font-size: 16px;
+        }
+
+        .company-logo {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 8px;
+        }
+
+        .logo-icon {
+            width: 48px;
+            height: 48px;
+            background: linear-gradient(135deg, #0071e3 0%, #00c7be 50%, #9333ea 100%);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .logo-icon::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 20px;
+            height: 20px;
+            background: white;
+            transform: translate(-50%, -50%) rotate(45deg);
+            clip-path: polygon(0 0, 70% 0, 100% 30%, 100% 100%, 30% 100%, 0 70%);
+        }
+
+        .logo-icon::after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 12px;
+            height: 12px;
+            background: var(--accent);
+            border-radius: 50%;
+            transform: translate(-50%, -50%);
+        }
+
+        .logo-text {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .logo-name {
+            font-size: 20px;
+            font-weight: 700;
+            color: var(--text-primary);
+            letter-spacing: -0.5px;
+        }
+
+        .logo-tagline {
+            font-size: 12px;
+            color: var(--text-secondary);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-top: -2px;
+        }
+
+        .footer-info {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 48px;
+            padding-top: 32px;
+            border-top: 1px solid var(--border);
+        }
+
+        .response-time {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            color: var(--text-secondary);
+            font-size: 14px;
+        }
+
+        .response-dot {
+            width: 8px;
+            height: 8px;
+            background: var(--success);
+            border-radius: 50%;
+            animation: blink 2s infinite;
+        }
+
+        @keyframes blink {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.3; }
+        }
+
+        .partners {
+            display: flex;
+            gap: 24px;
+            opacity: 0.5;
+        }
+
+        .partner {
+            font-size: 12px;
+            color: var(--text-secondary);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        @media (max-width: 768px) {
+            .cta-container {
+                padding: 40px 24px;
+            }
+
+            h1 {
+                font-size: 48px;
+            }
+
+            .subtitle {
+                font-size: 20px;
+            }
+
+            .trust-proof {
+                flex-direction: column;
+                gap: 24px;
+            }
+
+            .proof-number {
+                font-size: 36px;
+            }
+
+            .ai-features {
+                padding: 16px;
+            }
+
+            .ai-feature {
+                flex-direction: column;
+                text-align: center;
+                gap: 12px;
+                padding: 20px 16px;
+            }
+
+            .ai-icon {
+                align-self: center;
+            }
+
+            .benefits-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .cta-buttons {
+                flex-direction: column;
+            }
+
+            .cta-button {
+                width: 100%;
+            }
+
+            .company-logo {
+                justify-content: center;
+                margin-bottom: 16px;
+            }
+
+            .footer-info {
+                flex-direction: column;
+                gap: 24px;
+            }
+        }
+
+        @media (min-width: 769px) and (max-width: 1024px) {
+            .ai-features {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 12px;
+            }
+            
+            .ai-feature {
+                padding: 12px;
+            }
+            
+            .ai-desc {
+                font-size: 13px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="cta-container">
+        <h1>AI & ERP integrace.<br><span class="highlight">Automaticky chytřejší.</span></h1>
+
+        <p class="subtitle">
+            Propojujeme umělou inteligenci s vašimi systémy i klasické ERP integrace.<br>
+            SAP, Pohoda, Money - školení, automatizace a chytré řešení pro moderní firmy.
+        </p>
+
+        <div class="trust-proof">
+            <div class="proof-item">
+                <span class="proof-number">200+</span>
+                <span class="proof-label">Integrací</span>
+            </div>
+            <div class="proof-item">
+                <span class="proof-number">60%</span>
+                <span class="proof-label">Vyšší efektivita</span>
+            </div>
+            <div class="proof-item">
+                <span class="proof-number">24/7</span>
+                <span class="proof-label">Podpora</span>
+            </div>
+        </div>
+
+        <div class="ai-features">
+            <div class="ai-feature">
+                <div class="ai-icon">🤖</div>
+                <div class="ai-content">
+                    <div class="ai-title">ChatGPT & AI integrace</div>
+                    <div class="ai-desc">Napojíme ChatGPT, Claude nebo Gemini přímo do vašich systémů pro automatické odpovědi a analýzy.</div>
+                </div>
+            </div>
+            <div class="ai-feature">
+                <div class="ai-icon">🔗</div>
+                <div class="ai-content">
+                    <div class="ai-title">ERP & API integrace</div>
+                    <div class="ai-desc">Propojíme vaše ERP systémy - SAP, Pohoda, Money S3, Helios, e-shopy či CRM s automatickou synchronizací dat.</div>
+                </div>
+            </div>
+            <div class="ai-feature">
+                <div class="ai-icon">📚</div>
+                <div class="ai-content">
+                    <div class="ai-title">Školení a konzultace</div>
+                    <div class="ai-desc">Naučíme váš tým pracovat s AI nástroji i ERP systémy. Školení SAP, Pohoda, Money i ChatGPT - individuální i skupinová.</div>
+                </div>
+            </div>
+            <div class="ai-feature">
+                <div class="ai-icon">⚡</div>
+                <div class="ai-content">
+                    <div class="ai-title">Automatizace procesů</div>
+                    <div class="ai-desc">Automatické zpracování dokumentů, faktur a emailů pomocí AI i klasických workflow řešení.</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="benefits-grid">
+            <div class="benefit-card">
+                <div class="benefit-icon">🚀</div>
+                <div class="benefit-title">Rychlý start</div>
+                <div class="benefit-desc">První konzultace a analýza vašich ERP systémů i AI potenciálu do týdne.</div>
+            </div>
+            <div class="benefit-card">
+                <div class="benefit-icon">💰</div>
+                <div class="benefit-title">Transparentní ceny</div>
+                <div class="benefit-desc">Jasné ceníky bez skrytých poplatků. Platíte jen za to, co skutečně využijete.</div>
+            </div>
+            <div class="benefit-card">
+                <div class="benefit-icon">🎓</div>
+                <div class="benefit-title">Komplexní školení</div>
+                <div class="benefit-desc">Praktická školení AI nástrojů i ERP systémů (SAP, Pohoda, Money) přímo ve vaší firmě.</div>
+            </div>
+        </div>
+
+        <div class="cta-section">
+            <h2 class="cta-title">Začněte s integrací a školením</h2>
+            <p class="cta-subtitle">
+                Bezplatná konzultace • Analýza systémů • Školení AI i ERP • Demo řešení
+            </p>
+            
+            <div class="cta-buttons">
+                <button class="cta-button chat-button" onclick="startChat()">
+                    <svg class="icon" viewBox="0 0 24 24">
+                        <path d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"/>
+                    </svg>
+                    Napsat zprávu
+                </button>
+                
+                <a href="tel:+420777888999" class="cta-button primary-button">
+                    <svg class="icon" viewBox="0 0 24 24">
+                        <path d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"/>
+                    </svg>
+                    777 888 999
+                </a>
+                
+                <a href="mailto:info@zintegruj.cz" class="cta-button secondary-button">
+                    <svg class="icon" viewBox="0 0 24 24">
+                        <path d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/>
+                    </svg>
+                    Poslat email
+                </a>
+            </div>
+        </div>
+
+        <div class="guarantee">
+            <span class="guarantee-icon">✓</span>
+            <span class="guarantee-text"><strong>Profesionální AI řešení</strong> • Zkušený tým • Rychlá implementace</span>
+        </div>
+
+        <div class="company-logo">
+            <div class="logo-icon"></div>
+            <div class="logo-text">
+                <div class="logo-name">Zintegruj.cz</div>
+                <div class="logo-tagline">AI & ERP Integration</div>
+            </div>
+        </div>
+
+        <div class="footer-info">
+            <div class="response-time">
+                <span class="response-dot"></span>
+                <span>Odpovíme do 30 minut • 24/7 dostupnost</span>
+            </div>
+            <div class="partners">
+                <span class="partner">AI & ERP</span>
+                <span class="partner">Školení</span>
+                <span class="partner">Integrace</span>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Environment variables
+        const config = {
+            phoneNumber: '+420777888999',
+            email: 'info@zintegruj.cz',
+            chatWidget: 'smartsupp',
+            companyName: 'Zintegruj.cz'
+        };
+
+        // Update contact info from environment
+        document.addEventListener('DOMContentLoaded', function() {
+            const phoneLink = document.querySelector('a[href^="tel:"]');
+            const emailLink = document.querySelector('a[href^="mailto:"]');
+            
+            if (phoneLink && config.phoneNumber) {
+                phoneLink.href = `tel:${config.phoneNumber}`;
+                // Format phone number for display
+                const formatted = config.phoneNumber.replace(/(\+420)(\d{3})(\d{3})(\d{3})/, '$2 $3 $4');
+                phoneLink.innerHTML = `
+                    <svg class="icon" viewBox="0 0 24 24">
+                        <path d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"/>
+                    </svg>
+                    ${formatted}
+                `;
+            }
+            
+            if (emailLink && config.email) {
+                emailLink.href = `mailto:${config.email}`;
+            }
+
+            // Animate numbers on scroll
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        animateValue(entry.target);
+                    }
+                });
+            });
+
+            document.querySelectorAll('.proof-number').forEach(el => {
+                observer.observe(el);
+            });
+        });
+
+        function animateValue(element) {
+            const value = element.textContent;
+            const isPercentage = value.includes('%');
+            const isPlus = value.includes('+');
+            const numValue =
