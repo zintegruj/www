@@ -16,6 +16,10 @@
             padding: 0;
             box-sizing: border-box;
         }
+        
+        *, *::before, *::after {
+            max-width: 100%;
+        }
 
         :root {
             --bg-primary: #000000;
@@ -42,6 +46,8 @@
             position: relative;
             overflow-x: hidden;
             line-height: 1.5;
+            max-width: 100vw;
+            width: 100%;
         }
 
         body::before {
@@ -71,6 +77,8 @@
             position: relative;
             z-index: 1;
             box-shadow: 0 30px 60px rgba(0, 0, 0, 0.5);
+            box-sizing: border-box;
+            overflow-x: hidden;
         }
 
         .hero-badge {
@@ -110,15 +118,17 @@
         }
 
         h1 {
-            font-size: 72px;
+            font-size: clamp(36px, 8vw, 72px);
             font-weight: 800;
-            line-height: 1;
+            line-height: 1.1;
             letter-spacing: -0.03em;
             margin-bottom: 32px;
             background: linear-gradient(180deg, #ffffff 0%, #666666 100%);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
+            word-wrap: break-word;
+            overflow-wrap: break-word;
         }
 
         .highlight {
@@ -129,11 +139,13 @@
         }
 
         .subtitle {
-            font-size: 24px;
+            font-size: clamp(16px, 4vw, 24px);
             line-height: 1.4;
             color: var(--text-secondary);
             margin-bottom: 48px;
             font-weight: 400;
+            word-wrap: break-word;
+            overflow-wrap: break-word;
         }
 
         .trust-proof {
@@ -208,6 +220,8 @@
         .ai-content {
             flex: 1;
             min-width: 0;
+            width: 100%;
+            overflow: hidden;
         }
 
         .ai-title {
@@ -222,6 +236,8 @@
             color: var(--text-secondary);
             line-height: 1.5;
             word-wrap: break-word;
+            overflow-wrap: break-word;
+            hyphens: auto;
         }
 
         .benefits-grid {
@@ -290,6 +306,8 @@
             gap: 16px;
             justify-content: center;
             flex-wrap: wrap;
+            width: 100%;
+            box-sizing: border-box;
         }
 
         .cta-button {
@@ -297,7 +315,7 @@
             align-items: center;
             justify-content: center;
             gap: 8px;
-            padding: 16px 32px;
+            padding: 16px 24px;
             border-radius: 100px;
             font-size: 17px;
             font-weight: 600;
@@ -306,7 +324,12 @@
             cursor: pointer;
             border: none;
             position: relative;
-            min-width: 200px;
+            min-width: 160px;
+            max-width: 100%;
+            box-sizing: border-box;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
         }
 
         .primary-button {
@@ -481,52 +504,108 @@
         }
 
         @media (max-width: 768px) {
+            body {
+                padding: 10px;
+            }
+            
             .cta-container {
-                padding: 40px 24px;
+                padding: 24px 16px;
+                max-width: 100%;
+                margin: 0;
+                border-radius: 20px;
             }
 
             h1 {
-                font-size: 48px;
+                font-size: clamp(28px, 10vw, 48px);
+                line-height: 1.2;
+                margin-bottom: 24px;
             }
 
             .subtitle {
-                font-size: 20px;
+                font-size: clamp(14px, 5vw, 20px);
+                margin-bottom: 32px;
             }
 
             .trust-proof {
                 flex-direction: column;
-                gap: 24px;
+                gap: 20px;
+                padding: 20px 16px;
+                margin-bottom: 32px;
             }
 
             .proof-number {
-                font-size: 36px;
+                font-size: 32px;
             }
 
             .ai-features {
-                padding: 16px;
+                padding: 16px 12px;
+                gap: 12px;
+                margin-bottom: 32px;
             }
 
             .ai-feature {
-                flex-direction: column;
-                text-align: center;
+                flex-direction: row;
+                text-align: left;
                 gap: 12px;
-                padding: 20px 16px;
+                padding: 16px 12px;
             }
 
             .ai-icon {
-                align-self: center;
+                width: 40px;
+                height: 40px;
+                font-size: 20px;
+                flex-shrink: 0;
+            }
+            
+            .ai-title {
+                font-size: 16px;
+                margin-bottom: 6px;
+            }
+            
+            .ai-desc {
+                font-size: 13px;
+                line-height: 1.4;
             }
 
             .benefits-grid {
                 grid-template-columns: 1fr;
+                gap: 16px;
+                margin-bottom: 32px;
+            }
+
+            .benefit-card {
+                padding: 20px 16px;
+            }
+
+            .cta-section {
+                padding: 24px 16px;
+                margin-bottom: 24px;
+            }
+            
+            .cta-title {
+                font-size: 24px;
+                margin-bottom: 12px;
+            }
+            
+            .cta-subtitle {
+                font-size: 16px;
+                margin-bottom: 24px;
             }
 
             .cta-buttons {
                 flex-direction: column;
+                gap: 12px;
             }
 
             .cta-button {
                 width: 100%;
+                min-width: unset;
+                padding: 14px 20px;
+                font-size: 16px;
+                white-space: normal;
+                text-align: center;
+                height: auto;
+                min-height: 48px;
             }
 
             .company-logo {
@@ -536,7 +615,19 @@
 
             .footer-info {
                 flex-direction: column;
-                gap: 24px;
+                gap: 20px;
+                text-align: center;
+                margin-top: 32px;
+                padding-top: 24px;
+            }
+            
+            .response-time {
+                font-size: 13px;
+                justify-content: center;
+            }
+            
+            .partners {
+                justify-content: center;
             }
         }
 
@@ -628,15 +719,261 @@
             background: white;
         }
 
+        @media (max-width: 480px) {
+            body {
+                padding: 5px;
+            }
+            
+            .cta-container {
+                padding: 20px 12px;
+                border-radius: 16px;
+            }
+            
+            h1 {
+                font-size: clamp(24px, 12vw, 36px);
+                margin-bottom: 20px;
+            }
+            
+            .subtitle {
+                font-size: clamp(13px, 6vw, 18px);
+                margin-bottom: 24px;
+            }
+            
+            .ai-features {
+                padding: 12px 8px;
+            }
+            
+            .ai-feature {
+                padding: 12px 8px;
+            }
+            
+            .cta-button {
+                font-size: 15px;
+                padding: 12px 16px;
+            }
+        }
+
         @media (max-width: 768px) {
             .calendar-content {
                 padding: 24px 16px;
                 margin: 10px;
                 max-height: 85vh;
+                width: calc(100vw - 20px);
+                max-width: calc(100vw - 20px);
+                box-sizing: border-box;
             }
             
             .calendar-iframe {
                 height: 500px;
+                width: 100%;
+            }
+            
+            .calendar-modal {
+                padding: 10px;
+            }
+        }
+
+        /* Game Styles */
+        .game-container {
+            background: var(--card-bg);
+            border: 1px solid var(--border);
+            border-radius: 20px;
+            padding: 24px;
+            margin-top: 32px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .game-title {
+            font-size: 18px;
+            font-weight: 600;
+            color: var(--text-primary);
+            margin-bottom: 16px;
+        }
+
+        .game-stats {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+            padding: 12px 20px;
+            background: rgba(0, 113, 227, 0.1);
+            border-radius: 12px;
+        }
+
+        .stat-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .stat-value {
+            font-size: 24px;
+            font-weight: 700;
+            color: var(--accent);
+        }
+
+        .stat-label {
+            font-size: 12px;
+            color: var(--text-secondary);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .game-area {
+            height: 200px;
+            background: linear-gradient(135deg, rgba(0, 113, 227, 0.05), rgba(147, 51, 234, 0.05));
+            border-radius: 16px;
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 20px;
+            overflow: hidden;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .game-area:hover {
+            background: linear-gradient(135deg, rgba(0, 113, 227, 0.1), rgba(147, 51, 234, 0.1));
+        }
+
+        .game-character {
+            font-size: 48px;
+            transition: all 0.2s ease;
+            user-select: none;
+            position: relative;
+            z-index: 2;
+        }
+
+        .game-character.clicked {
+            transform: scale(1.2) rotate(360deg);
+        }
+
+        .score-popup {
+            position: absolute;
+            font-size: 20px;
+            font-weight: 700;
+            color: var(--success);
+            pointer-events: none;
+            animation: scoreFloat 1s ease-out forwards;
+            z-index: 3;
+        }
+
+        @keyframes scoreFloat {
+            0% {
+                opacity: 1;
+                transform: translateY(0px) scale(0.8);
+            }
+            100% {
+                opacity: 0;
+                transform: translateY(-50px) scale(1.2);
+            }
+        }
+
+        .game-buttons {
+            display: flex;
+            gap: 12px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .game-button {
+            padding: 10px 20px;
+            background: var(--accent);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 14px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .game-button:hover {
+            background: var(--accent-hover);
+            transform: translateY(-2px);
+        }
+
+        .game-button.secondary {
+            background: rgba(255, 255, 255, 0.1);
+            color: var(--text-primary);
+        }
+
+        .game-button.secondary:hover {
+            background: rgba(255, 255, 255, 0.2);
+        }
+
+        .high-score {
+            margin-top: 16px;
+            font-size: 14px;
+            color: var(--text-secondary);
+        }
+
+        .high-score .score {
+            color: var(--success);
+            font-weight: 600;
+        }
+
+        .game-message {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-size: 16px;
+            color: var(--text-secondary);
+            z-index: 1;
+        }
+
+        .floating-shape {
+            position: absolute;
+            border-radius: 50%;
+            background: linear-gradient(45deg, var(--accent), var(--success));
+            animation: float 3s ease-in-out infinite;
+            pointer-events: none;
+        }
+
+        @keyframes float {
+            0%, 100% {
+                transform: translateY(0px) rotate(0deg);
+                opacity: 0.3;
+            }
+            50% {
+                transform: translateY(-20px) rotate(180deg);
+                opacity: 0.6;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .game-container {
+                padding: 20px 16px;
+                margin-top: 24px;
+            }
+
+            .game-area {
+                height: 160px;
+            }
+
+            .game-character {
+                font-size: 40px;
+            }
+
+            .game-stats {
+                padding: 10px 16px;
+            }
+
+            .stat-value {
+                font-size: 20px;
+            }
+
+            .game-buttons {
+                gap: 8px;
+            }
+
+            .game-button {
+                padding: 8px 16px;
+                font-size: 13px;
             }
         }
     </style>
@@ -783,6 +1120,41 @@
                 <span class="partner">Integrace</span>
             </div>
         </div>
+
+        <!-- Simple Clicking Game -->
+        <div class="game-container" id="gameContainer">
+            <h3 class="game-title">🎮 Integrační Hra - Zachyť AI!</h3>
+            
+            <div class="game-stats">
+                <div class="stat-item">
+                    <span class="stat-value" id="scoreValue">0</span>
+                    <span class="stat-label">Skóre</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-value" id="clicksValue">0</span>
+                    <span class="stat-label">Kliků</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-value" id="levelValue">1</span>
+                    <span class="stat-label">Úroveň</span>
+                </div>
+            </div>
+
+            <div class="game-area" id="gameArea">
+                <div class="game-message" id="gameMessage">Klikni na 🤖 pro zachycení AI!</div>
+                <div class="game-character" id="gameCharacter">🤖</div>
+            </div>
+
+            <div class="game-buttons">
+                <button class="game-button" onclick="startGame()">▶️ Start</button>
+                <button class="game-button secondary" onclick="resetGame()">🔄 Reset</button>
+                <button class="game-button secondary" onclick="toggleAutoMode()">⚡ Auto</button>
+            </div>
+
+            <div class="high-score" id="highScore">
+                Nejvyšší skóre: <span class="score" id="highScoreValue">0</span>
+            </div>
+        </div>
     </div>
 
     <!-- Calendar Modal -->
@@ -904,6 +1276,223 @@
                 closeCalendar();
             }
         });
+
+        // Simple Clicking Game
+        class IntegrationGame {
+            constructor() {
+                this.score = 0;
+                this.clicks = 0;
+                this.level = 1;
+                this.isPlaying = false;
+                this.autoMode = false;
+                this.gameSpeed = 2000;
+                this.characters = ['🤖', '🔮', '⚡', '🚀', '💎', '🎯', '⭐', '🔥'];
+                this.currentCharacter = 0;
+                this.gameInterval = null;
+                this.autoInterval = null;
+                this.loadHighScore();
+            }
+
+            loadHighScore() {
+                this.highScore = parseInt(localStorage.getItem('integrationGameHighScore') || '0');
+                document.getElementById('highScoreValue').textContent = this.highScore;
+            }
+
+            saveHighScore() {
+                if (this.score > this.highScore) {
+                    this.highScore = this.score;
+                    localStorage.setItem('integrationGameHighScore', this.highScore.toString());
+                    document.getElementById('highScoreValue').textContent = this.highScore;
+                }
+            }
+
+            updateDisplay() {
+                document.getElementById('scoreValue').textContent = this.score;
+                document.getElementById('clicksValue').textContent = this.clicks;
+                document.getElementById('levelValue').textContent = this.level;
+            }
+
+            moveCharacter() {
+                if (!this.isPlaying) return;
+
+                const gameArea = document.getElementById('gameArea');
+                const character = document.getElementById('gameCharacter');
+                const message = document.getElementById('gameMessage');
+                
+                // Hide message when game starts
+                message.style.display = 'none';
+                
+                // Change character occasionally
+                if (Math.random() < 0.3) {
+                    this.currentCharacter = (this.currentCharacter + 1) % this.characters.length;
+                    character.textContent = this.characters[this.currentCharacter];
+                }
+
+                // Random position
+                const maxX = gameArea.offsetWidth - 60;
+                const maxY = gameArea.offsetHeight - 60;
+                const x = Math.random() * maxX;
+                const y = Math.random() * maxY;
+                
+                character.style.position = 'absolute';
+                character.style.left = x + 'px';
+                character.style.top = y + 'px';
+                character.style.transform = 'none';
+
+                // Add floating shapes occasionally
+                if (Math.random() < 0.4) {
+                    this.createFloatingShape(gameArea);
+                }
+            }
+
+            createFloatingShape(container) {
+                const shape = document.createElement('div');
+                shape.className = 'floating-shape';
+                shape.style.left = Math.random() * (container.offsetWidth - 20) + 'px';
+                shape.style.top = Math.random() * (container.offsetHeight - 20) + 'px';
+                shape.style.width = Math.random() * 15 + 8 + 'px';
+                shape.style.height = shape.style.width;
+                shape.style.animationDelay = Math.random() * 2 + 's';
+                
+                container.appendChild(shape);
+                
+                setTimeout(() => {
+                    if (shape.parentNode) {
+                        shape.parentNode.removeChild(shape);
+                    }
+                }, 3000);
+            }
+
+            clickCharacter(event) {
+                if (!this.isPlaying) return;
+
+                const character = document.getElementById('gameCharacter');
+                this.clicks++;
+                this.score += this.level * 10;
+                
+                // Level up every 20 clicks
+                if (this.clicks % 20 === 0) {
+                    this.level++;
+                    this.gameSpeed = Math.max(800, this.gameSpeed - 200);
+                    this.startGameLoop();
+                }
+
+                // Add click animation
+                character.classList.add('clicked');
+                setTimeout(() => character.classList.remove('clicked'), 200);
+
+                // Show score popup
+                this.showScorePopup(event, this.level * 10);
+
+                this.updateDisplay();
+                this.moveCharacter();
+            }
+
+            showScorePopup(event, points) {
+                const popup = document.createElement('div');
+                popup.className = 'score-popup';
+                popup.textContent = '+' + points;
+                popup.style.left = event.offsetX + 'px';
+                popup.style.top = event.offsetY + 'px';
+                
+                document.getElementById('gameArea').appendChild(popup);
+                
+                setTimeout(() => {
+                    if (popup.parentNode) {
+                        popup.parentNode.removeChild(popup);
+                    }
+                }, 1000);
+            }
+
+            startGameLoop() {
+                if (this.gameInterval) {
+                    clearInterval(this.gameInterval);
+                }
+                
+                this.gameInterval = setInterval(() => {
+                    this.moveCharacter();
+                }, this.gameSpeed);
+            }
+
+            start() {
+                if (this.isPlaying) return;
+                
+                this.isPlaying = true;
+                document.getElementById('gameMessage').style.display = 'none';
+                this.moveCharacter();
+                this.startGameLoop();
+                
+                // Add click listener
+                document.getElementById('gameCharacter').addEventListener('click', (e) => {
+                    this.clickCharacter(e);
+                });
+            }
+
+            reset() {
+                this.isPlaying = false;
+                this.score = 0;
+                this.clicks = 0;
+                this.level = 1;
+                this.gameSpeed = 2000;
+                this.currentCharacter = 0;
+                this.autoMode = false;
+                
+                if (this.gameInterval) clearInterval(this.gameInterval);
+                if (this.autoInterval) clearInterval(this.autoInterval);
+                
+                // Reset character position
+                const character = document.getElementById('gameCharacter');
+                character.textContent = this.characters[0];
+                character.style.position = 'relative';
+                character.style.left = 'auto';
+                character.style.top = 'auto';
+                character.style.transform = 'none';
+                
+                // Show message
+                document.getElementById('gameMessage').style.display = 'block';
+                
+                this.updateDisplay();
+                this.saveHighScore();
+            }
+
+            toggleAuto() {
+                this.autoMode = !this.autoMode;
+                
+                if (this.autoMode && this.isPlaying) {
+                    this.autoInterval = setInterval(() => {
+                        const character = document.getElementById('gameCharacter');
+                        const rect = character.getBoundingClientRect();
+                        const gameRect = document.getElementById('gameArea').getBoundingClientRect();
+                        
+                        const fakeEvent = {
+                            offsetX: rect.left - gameRect.left + rect.width/2,
+                            offsetY: rect.top - gameRect.top + rect.height/2
+                        };
+                        
+                        this.clickCharacter(fakeEvent);
+                    }, 500);
+                } else if (this.autoInterval) {
+                    clearInterval(this.autoInterval);
+                    this.autoInterval = null;
+                }
+            }
+        }
+
+        // Initialize game
+        const game = new IntegrationGame();
+
+        // Game functions
+        function startGame() {
+            game.start();
+        }
+
+        function resetGame() {
+            game.reset();
+        }
+
+        function toggleAutoMode() {
+            game.toggleAuto();
+        }
     </script>
 </body>
 </html>
