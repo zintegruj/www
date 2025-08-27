@@ -857,6 +857,9 @@
             position: relative;
             overflow: hidden;
             padding: 20px;
+            width: 100%;
+            max-width: 100%;
+            box-sizing: border-box;
         }
 
 
@@ -898,6 +901,9 @@
             justify-content: center;
             margin-bottom: 20px;
             overflow: hidden;
+            width: 100%;
+            max-width: 100%;
+            box-sizing: border-box;
         }
 
         .game-character {
@@ -1387,14 +1393,17 @@
             }
 
             function moveCharacter() {
-                const maxX = gameArea.offsetWidth - 60;
-                const maxY = gameArea.offsetHeight - 60;
-                const x = Math.random() * maxX;
-                const y = Math.random() * maxY;
+                const characterSize = window.innerWidth <= 768 ? 40 : 48;
+                const maxX = Math.max(0, gameArea.offsetWidth - characterSize);
+                const maxY = Math.max(0, gameArea.offsetHeight - characterSize);
+                const x = Math.min(Math.random() * maxX, maxX);
+                const y = Math.min(Math.random() * maxY, maxY);
                 
                 character.style.position = 'absolute';
                 character.style.left = x + 'px';
                 character.style.top = y + 'px';
+                character.style.maxWidth = '100%';
+                character.style.boxSizing = 'border-box';
             }
 
             function createFloatingShape() {
