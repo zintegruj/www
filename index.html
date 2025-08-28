@@ -9,13 +9,21 @@
       function gtag(){dataLayer.push(arguments);}
       gtag('js', new Date());
 
-      // Configure with consent mode
+      // Configure Google Consent Mode v2
       gtag('consent', 'default', {
-        'analytics_storage': 'denied'
+        'analytics_storage': 'denied',
+        'ad_storage': 'denied',
+        'ad_user_data': 'denied',
+        'ad_personalization': 'denied',
+        'functionality_storage': 'denied',
+        'personalization_storage': 'denied',
+        'security_storage': 'granted'
       });
 
       gtag('config', 'G-ZHK32S67QN', {
-        'anonymize_ip': true
+        'anonymize_ip': true,
+        'allow_google_signals': false,
+        'allow_ad_personalization_signals': false
       });
     </script>
     
@@ -1728,10 +1736,22 @@
                 timestamp: new Date().getTime()
             };
             localStorage.setItem('cookieConsent', JSON.stringify(consent));
-            // Ensure analytics remains disabled
+            
+            // Explicitly deny analytics and send consent status
             if (typeof gtag === 'function') {
                 gtag('consent', 'update', {
-                    'analytics_storage': 'denied'
+                    'analytics_storage': 'denied',
+                    'ad_storage': 'denied',
+                    'ad_user_data': 'denied',
+                    'ad_personalization': 'denied',
+                    'functionality_storage': 'denied',
+                    'personalization_storage': 'denied'
+                });
+                
+                // Send consent denied event
+                gtag('event', 'consent_update', {
+                    'consent_type': 'analytics',
+                    'consent_status': 'denied'
                 });
             }
             hideCookieBanner();
@@ -1758,18 +1778,37 @@
             };
             localStorage.setItem('cookieConsent', JSON.stringify(consent));
             
-            if (analyticsChecked) {
-                enableGoogleAnalytics();
+            // Update consent based on user selection
+            if (typeof gtag === 'function') {
+                gtag('consent', 'update', {
+                    'analytics_storage': analyticsChecked ? 'granted' : 'denied',
+                    'functionality_storage': analyticsChecked ? 'granted' : 'denied',
+                    'personalization_storage': analyticsChecked ? 'granted' : 'denied'
+                });
+                
+                // Send custom consent event
+                gtag('event', 'consent_update', {
+                    'consent_type': 'analytics',
+                    'consent_status': analyticsChecked ? 'granted' : 'denied'
+                });
             }
             
             hideCookieBanner();
         }
 
         function enableGoogleAnalytics() {
-            // Enable Google Analytics
+            // Enable Google Analytics with full consent
             if (typeof gtag === 'function') {
                 gtag('consent', 'update', {
-                    'analytics_storage': 'granted'
+                    'analytics_storage': 'granted',
+                    'functionality_storage': 'granted',
+                    'personalization_storage': 'granted'
+                });
+                
+                // Send consent granted event
+                gtag('event', 'consent_update', {
+                    'consent_type': 'analytics',
+                    'consent_status': 'granted'
                 });
             }
         }
