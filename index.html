@@ -9,6 +9,9 @@
       function gtag(){dataLayer.push(arguments);}
       gtag('js', new Date());
 
+      // Debug logging
+      console.log('Google Analytics initializing...');
+
       // Configure Google Consent Mode v2
       gtag('consent', 'default', {
         'analytics_storage': 'denied',
@@ -23,8 +26,16 @@
       gtag('config', 'G-ZHK32S67QN', {
         'anonymize_ip': true,
         'allow_google_signals': false,
-        'allow_ad_personalization_signals': false
+        'allow_ad_personalization_signals': false,
+        'debug_mode': true
       });
+
+      // Debug: Log when GA is loaded
+      gtag('event', 'page_view', {
+        'send_page_view': false
+      });
+      
+      console.log('Google Analytics configured with ID: G-ZHK32S67QN');
     </script>
     
     <meta charset="UTF-8">
@@ -1799,6 +1810,8 @@
         function enableGoogleAnalytics() {
             // Enable Google Analytics with full consent
             if (typeof gtag === 'function') {
+                console.log('Enabling Google Analytics...');
+                
                 gtag('consent', 'update', {
                     'analytics_storage': 'granted',
                     'functionality_storage': 'granted',
@@ -1810,6 +1823,16 @@
                     'consent_type': 'analytics',
                     'consent_status': 'granted'
                 });
+
+                // Send a test page view to verify tracking
+                gtag('event', 'page_view', {
+                    'page_title': 'Zintegruj.cz - Consent Granted',
+                    'page_location': window.location.href
+                });
+                
+                console.log('Google Analytics enabled and tracking consent granted');
+            } else {
+                console.error('gtag function not available');
             }
         }
 
